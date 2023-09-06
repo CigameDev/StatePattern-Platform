@@ -5,6 +5,6 @@ using UnityEngine;
 public class MovementData : MonoBehaviour
 {
     internal int horizontalMovementDirection;
-    internal int currentSpeed;
+    internal float currentSpeed;
     internal Vector2 currentVelocity;
 }

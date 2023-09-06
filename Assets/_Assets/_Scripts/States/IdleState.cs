@@ -13,6 +13,9 @@ public class IdleState : State
 
     protected override void HandleMovement(Vector2 input)
     {
-        agent.TransitonToState(MoveState,this);
+        if (Mathf.Abs(input.x) > 0)
+        {
+            agent.TransitionToState(MoveState);
+        }
     }
 }
