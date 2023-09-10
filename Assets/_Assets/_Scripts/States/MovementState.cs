@@ -9,7 +9,6 @@ public class MovementState : State
     protected MovementData movementData;
     public State IdleState;
 
-    public float acceleration, deacceleration, maxspeed;
 
     private void Awake()
     {
@@ -27,6 +26,7 @@ public class MovementState : State
 
     public override void StateUpdate()
     {
+        if (TestFallTransition()) return;
         base.StateUpdate();
         CalculateVelocity();
         SetPlayerVelocity();
@@ -67,13 +67,13 @@ public class MovementState : State
     {
         if(Mathf.Abs(movementVector.x) > 0)
         {
-            movementData.currentSpeed += acceleration * Time.deltaTime;
+            movementData.currentSpeed += agent.agentDataSO.acceleration * Time.deltaTime;
         }    
         else
         {
-            movementData.currentSpeed -= deacceleration * Time.deltaTime;
+            movementData.currentSpeed -= agent.agentDataSO.deacceleration * Time.deltaTime;
         }    
 
-        movementData.currentSpeed = Mathf.Clamp(movementData.currentSpeed, 0, maxspeed);
+        movementData.currentSpeed = Mathf.Clamp(movementData.currentSpeed, 0, agent.agentDataSO.maxSpeed);
     }
 }
