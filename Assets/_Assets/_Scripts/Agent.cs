@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class Agent : MonoBehaviour
 {
@@ -38,7 +39,6 @@ public class Agent : MonoBehaviour
         TransitionToState(IdleState);
     }
 
-  
 
     internal void TransitionToState(State desiredState)
     {
@@ -56,7 +56,7 @@ public class Agent : MonoBehaviour
 
         DisplayState();
     }
-
+    
     private void DisplayState()
     {
         if(previousState == null ||previousState.GetType()!=currentState.GetType())
@@ -64,7 +64,7 @@ public class Agent : MonoBehaviour
             stateName = currentState.GetType().ToString();
         }    
     }
-
+    
     private void Update()
     {
         currentState.StateUpdate();
